@@ -33,7 +33,7 @@ java -jar  java-classviewer-v1.0-jar-with-dependencies.jar
 
 ![Screenshot](classviewer/doc/img/b.png)
 
-!![Screenshot](classviewer/doc/img/g.png)
+![Screenshot](classviewer/doc/img/g.png)
 
 ## view jar file
 
