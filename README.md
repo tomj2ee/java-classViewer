@@ -20,7 +20,7 @@ mvn clean package -Dmaven.test.skip=true
 
 ## Run
 ```shell
-jave -jar  java-classviewer-v1.0-jar-with-dependencies.jar
+java -jar  java-classviewer-v1.0-jar-with-dependencies.jar
 ```
 
 ## Screenshots
