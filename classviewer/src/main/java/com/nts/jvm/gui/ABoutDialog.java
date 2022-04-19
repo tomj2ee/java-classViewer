@@ -1,7 +1,5 @@
 package com.nts.jvm.gui;
 
-import sun.management.jdp.JdpJmxPacket;
-
 import javax.swing.*;
 import java.awt.*;
 

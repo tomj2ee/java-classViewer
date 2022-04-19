@@ -22,13 +22,7 @@ public class ClassCodePanel extends JPanel implements ClassListener {
 		this.setLayout(new BorderLayout());
 		area.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 		area.setAutoIndentEnabled(true);
-		Font f = area.getFont();
-		Font font = new Font(f.getName(), f.getStyle(), f.getSize() + 5);
-		area.setSyntaxScheme(new SyntaxScheme(font, false));
-
-		// area.setBorder(new LineNumberBorder());
 		area.setAlignmentX(200);
-		// area.setMargin(new Insets(0,200,0,10));
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(new RTextScrollPane(area, true), BorderLayout.CENTER);

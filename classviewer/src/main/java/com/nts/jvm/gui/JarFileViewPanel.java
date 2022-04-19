@@ -57,7 +57,7 @@ public class JarFileViewPanel extends DropTargetComponent {
             Object userObj = node.getUserObject();
             if (userObj instanceof MethodTreeInfo) {
                 MethodTreeInfo methodTreeInfo = (MethodTreeInfo) node.getUserObject();
-                if (methodTreeInfo != null && methodTreeInfo.getType() == 2) {
+                if (methodTreeInfo != null && methodTreeInfo.getType() == 8) {
                     String classPath = methodTreeInfo.getCode();
                     SwingUtilities.invokeLater(() -> updateClass(classPath));
                 }
@@ -89,26 +89,25 @@ public class JarFileViewPanel extends DropTargetComponent {
                     ZipEntry entry = entries.nextElement();
                     if (entry != null) {
                         String fileName = entry.getName();
+                        //System.out.println(fileName);
                         String parentName = getParent(fileName);
                         if (!entry.isDirectory()) {
+                            int type = 1;
+
                             if (fileName.endsWith(".class")) {
-                                MethodTreeInfo me = new MethodTreeInfo(FileNameUtil.getName(fileName), -1, -1, 2);
-                                me.setCode(fileName);
-                                DefaultMutableTreeNode node = new DefaultMutableTreeNode(me);
-                                DefaultMutableTreeNode parentNode = defNodeMap.get(parentName);
-                                if (parentNode != null) {
-                                    parentNode.add(node);
-                                }
+                                type = 8;
                             }
-                        } else {
+                            MethodTreeInfo me = new MethodTreeInfo(FileNameUtil.getName(fileName), -1, -1, type);
+                            me.setCode(fileName);
+                            DefaultMutableTreeNode node = new DefaultMutableTreeNode(me);
                             DefaultMutableTreeNode parentNode = defNodeMap.get(parentName);
-                            DefaultMutableTreeNode node = new DefaultMutableTreeNode(new MethodTreeInfo(FileNameUtil.getName(fileName), -1, -1, 7));
-                            if (parentNode != null) {
-                                parentNode.add(node);
-                            } else {
-                                root.add(node);
+                            if (parentNode == null) {
+                                parentNode = createOrGetParent(parentName);
                             }
-                            defNodeMap.put(FileNameUtil.getCurrent(fileName), node);
+                            parentNode.add(node);
+
+                        } else {
+                           createOrGetParent(fileName);
                         }
                     }
                 }
@@ -119,6 +118,51 @@ public class JarFileViewPanel extends DropTargetComponent {
             tree.expandRow(0);
             dt.reload();
         });
+    }
+
+
+    private  DefaultMutableTreeNode newNode(String currentKey,String nodeName) {
+        if (defNodeMap.get(currentKey) == null) {
+            DefaultMutableTreeNode node = new DefaultMutableTreeNode(new MethodTreeInfo(nodeName, -1, -1, 7));
+            defNodeMap.put(currentKey, node);
+        }
+        return defNodeMap.get(currentKey);
+
+    }
+
+    private DefaultMutableTreeNode createOrGetParent(String strParent) {
+        String strNode = strParent;
+        int level = -1;
+        int pos = 0;
+        String strP = "";
+        for (; ; ) {
+            int idx = strNode.indexOf("/", pos);
+            if (idx != -1) {
+                strP = strNode.substring(0, idx);
+            } else {
+                strP = strNode;
+            }
+            level++;
+            String currentKey = strP;
+            String currentName = FileNameUtil.getName(strP);
+            if (level == 0) {
+                if(defNodeMap.get(currentKey)==null) {
+                    root.add(newNode(currentKey, currentName));
+                }
+            } else {
+                String currentParent = getParent(strP);
+                DefaultMutableTreeNode parentNode = defNodeMap.get(currentParent);
+                if(defNodeMap.get(currentKey)==null) {
+                    parentNode.add(newNode(currentKey, currentName));
+                }
+            }
+            if (idx == -1) {
+                break;
+            }
+            pos = idx + 1;
+        }
+        return defNodeMap.get(strParent);
+
     }
 
 

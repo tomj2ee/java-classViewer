@@ -20,7 +20,7 @@ public class IconRenderer   extends DefaultTreeCellRenderer {
             if (o instanceof MethodTreeInfo) {
                 MethodTreeInfo userObject = (MethodTreeInfo) o;
                 if (userObject.getType() == 0) {
-                    setIcon(IconFactory.classIcon);
+                    setIcon(IconFactory.class2XIcon);
                 } else if (userObject.getType() == 1) {
                     setIcon(IconFactory.fieldIcon);
                 } else if (userObject.getType() == 2) {
@@ -33,6 +33,8 @@ public class IconRenderer   extends DefaultTreeCellRenderer {
                     setIcon(IconFactory.dIcon);
                 }else if (userObject.getType() == 7) {
                     setIcon(IconFactory.fIcon);
+                }else if (userObject.getType() == 8) {
+                    setIcon(IconFactory.classIcon);
                 } else {
                     setIcon(IconFactory.methodIcon);
                 }

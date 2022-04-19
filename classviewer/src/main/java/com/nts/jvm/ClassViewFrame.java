@@ -2,10 +2,8 @@ package com.nts.jvm;
 
 import com.nts.jvm.conf.ConfFileList;
 import com.nts.jvm.gui.ABoutDialog;
-import com.nts.jvm.gui.DropTargetComponent;
 import com.nts.jvm.gui.FrameViewPanel;
 import com.nts.jvm.gui.IconFactory;
-import com.nts.jvm.util.FileConfUtil;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -13,7 +11,6 @@ import java.awt.*;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.io.File;
-import java.lang.management.ManagementFactory;
 
 public class ClassViewFrame extends JFrame {
 

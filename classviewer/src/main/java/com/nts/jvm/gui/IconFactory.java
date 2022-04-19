@@ -10,6 +10,7 @@ public class IconFactory {
 
     public static ImageIcon methodIcon;
     public static ImageIcon fieldIcon;
+    public static ImageIcon class2XIcon;
     public static ImageIcon classIcon;
 
     public static BufferedImage titleIcon;
@@ -29,8 +30,12 @@ public class IconFactory {
     static {
 
         try {
-            BufferedImage classImg = ImageIO.read(Objects.requireNonNull(IconRenderer.class.getResourceAsStream(
+            BufferedImage class2XImg = ImageIO.read(Objects.requireNonNull(IconRenderer.class.getResourceAsStream(
                     "/icon/class@2x.png")));
+
+            BufferedImage classImg = ImageIO.read(Objects.requireNonNull(IconRenderer.class.getResourceAsStream(
+                    "/icon/class.png")));
+
             BufferedImage methodImg = ImageIO.read(Objects.requireNonNull(IconRenderer.class.getResourceAsStream(
                     "/icon/method.png")));
 
@@ -66,6 +71,7 @@ public class IconFactory {
             BufferedImage   javaImg = ImageIO.read(Objects.requireNonNull(IconRenderer.class.getResourceAsStream(
                     "/icon/java.jpeg")));
 
+            class2XIcon = new ImageIcon(class2XImg);
             classIcon = new ImageIcon(classImg);
             fieldIcon = new ImageIcon(fieldImg);
             methodIcon = new ImageIcon(methodImg);

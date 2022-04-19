@@ -18,19 +18,26 @@ public class HexReader {
     public byte[] readBytes(InputStream in) {
         byte[] bytes;
         try {
-            int len = in.available();
-            bytes = new byte[(int) len];
-            int readLength = in.read(bytes);
-            if ((long) readLength < len) {
-                throw new RuntimeException("File length is "+len +"  but read  "+ readLength);
+            int size = in.available();
+            bytes = new byte[size];
+            byte[] buf=new byte[256];
+            int pos=0;
+            while ( pos<=size){
+                int readLen = in.read(buf);
+                if(readLen<=0){
+                    break;
+                }
+                System.arraycopy(buf,0,bytes,pos,readLen);
+                pos=pos+readLen;
             }
-        } catch (Exception var10) {
-            throw new RuntimeException(var10);
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
         } finally {
            if(in!=null){
                try {
                    in.close();
-               }catch (Exception ex){
+               }catch (Exception ignored){
 
                }
            }
