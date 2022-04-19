@@ -15,19 +15,19 @@
 
 ## 3.查看类图
 
-![](classviewer/doc/img/q.png)
+![Screenshot](classviewer/doc/img/q.png)
 
 ## 4. 查看字节码二进制文件内容
 
-![](classviewer/doc/img/b.png)
+![Screenshot](classviewer/doc/img/b.png)
 
-![](classviewer/doc/img/g.png)
+![Screenshot](classviewer/doc/img/g.png)
 
 ## 5. 查看jar文件内容
 
-![](classviewer/doc/img/h.png)
+![Screenshot](classviewer/doc/img/h.png)
 
-![](classviewer/doc/img/k.png)
+![Screenshot](classviewer/doc/img/k.png)
 
 
 ## 6.参考文档
@@ -36,4 +36,4 @@ https://docs.oracle.com/javase/specs/jvms/se16/html/jvms-6.html
 
 ## 联系我们
 
-![](classviewer/doc/img/qrcode.jpg)
+![Screenshot](classviewer/doc/img/qrcode.jpg)
